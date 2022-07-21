@@ -1,0 +1,20 @@
+services:
+  goapp1:
+    build: app
+    ports:
+      - 5000:5000
+    container_name: goapp1
+  goapp2:
+    build: app
+    ports:
+      - 5001:5000
+    container_name: goapp2
+  nginx:
+    build: nginx
+    ports:
+      - 8082:8082
+    container_name: balancer
+    depends_on:
+      - goapp1
+      - goapp2
+
